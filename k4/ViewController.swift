@@ -16,7 +16,9 @@ enum SaveKind{
     case thubnail
     case big
 }
+//请自行在 顶级目录下创建 big thubnail 目录
 let picPath = "/Users/sk/Desktop/pics"
+
 extension SaveKind{
     var dirName: String{
         switch self {
@@ -43,7 +45,11 @@ class ViewController: NSViewController {
             guard let url  = urls.next() else {
                 return nil
             }
-            return self.fetch(page: url)
+          return  firstly{
+                after(seconds: 10)
+                }.then({ _ in
+                    return self.fetch(page: url)
+                })
         }
         when(fulfilled: generator, concurrently: 2)
             .ensure {
@@ -112,7 +118,9 @@ class ViewController: NSViewController {
                         
                 }).asVoid().done({ _ in
                     if value.isLastPage == false{
-                        self.fetch(page: nextUrl)
+                        after(.seconds(10)).done({ _ in                      
+                            self.fetch(page: nextUrl)
+                        })
                     }
                 })
             })

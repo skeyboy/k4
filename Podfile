@@ -12,4 +12,5 @@ pod 'Ji'
 pod 'PromiseKit'
 # pod 'Alamofire'
 pod 'PromiseKit/Alamofire'
+# pod 'TensorFlow',:git=>'https://github.com/tensorflow/swift.git'
 end
