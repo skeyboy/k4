@@ -12,5 +12,5 @@ nextSlibing	下一个相邻节点
 preSlibing	上一个相邻节点
 ```
 # PromiseKit
-## 类.barrier   when
+## 类group =>  when
 ![总体预览](./snap/when.png)
